@@ -1,6 +1,6 @@
-FROM redhat/ubi8:8.9
-RUN yum -y install nginx
-ADD index.html /usr/share/nginx/html/index.html
-EXPOSE 80/tcp
+FROM nginx:alpine
+RUN rm /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY index.html /usr/share/nginx/html/index.html
+EXPOSE 8080
 CMD ["nginx", "-g", "daemon off;"]
-
